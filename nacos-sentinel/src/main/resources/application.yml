@@ -1,0 +1,44 @@
+server:
+  port: 8766
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    sentinel:
+      transport:
+        port: 8719
+        dashboard: localhost:8080
+      datasource:
+        flow:
+          nacos:
+            server-addr: localhost:8848
+            dataId: flow-rules
+            groupId: nacos-sentinel
+            # 规则类型，取值见：
+            # org.springframework.cloud.alibaba.sentinel.datasource.RuleType
+            rule-type: flow
+          degrade:
+            nacos:
+              server-addr: localhost:8848
+              dataId: degrade-rules
+              groupId: nacos-sentinel
+              rule-type: degrade
+          system:
+            nacos:
+              server-addr: localhost:8848
+              dataId: system-rules
+              groupId: nacos-sentinel
+              rule-type: system
+          authority:
+            nacos:
+              server-addr: localhost:8848
+              dataId: authority-rules
+              groupId: nacos-sentinel
+              rule-type: authority
+          param-flow:
+            nacos:
+              server-addr: localhost:8848
+              dataId: param-flow-rules
+              groupId: nacos-sentinel
+              rule-type: param-flow

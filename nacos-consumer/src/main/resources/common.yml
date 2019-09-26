@@ -1,0 +1,35 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    sentinel:
+      transport:
+        port: 8719
+        dashboard: localhost:8080
+  #链路追踪
+  zipkin:
+    base-url: http://localhost:9411
+    discoveryClientEnabled: false
+#开启对feign的支持
+feign:
+  sentinel:
+    enabled: true
+#ribbon相关配置
+#nacos-provider为客户端调用的服务名
+nacos-provider:
+  ribbon:
+    # 代表Ribbon使用的负载均衡策略
+    NFLoadBalancerRuleClassName: com.zoe.rule.NacosWeightRandomV2Rule
+    # 每台服务器最多重试次数，但是首次调用不包括在内， Max number of retries on the same server (excluding the first try)
+    MaxAutoRetries: 1
+    # 最多重试多少台服务器，Max number of next servers to retry (excluding the first server)
+    MaxAutoRetriesNextServer: 1
+    # 无论是请求超时或者socket read timeout都进行重试，Whether all operations can be retried for this client
+    OkToRetryOnAllOperations: true
+    # Interval to refresh the server list from the source
+    ServerListRefreshInterval: 2000
+    # Connect timeout used by Apache HttpClient
+    ConnectTimeout: 3000
+    # Read timeout used by Apache HttpClient
+    ReadTimeout: 3000

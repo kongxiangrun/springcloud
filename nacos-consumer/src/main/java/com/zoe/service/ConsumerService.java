@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @date: 2019/9/20 16:58
  */
 @FeignClient(value = "nacos-provider")
+@RequestMapping("/provider")
 public interface ConsumerService {
     /**
+     * 测试
      * @param name 姓名
      * @return 结果
      */
